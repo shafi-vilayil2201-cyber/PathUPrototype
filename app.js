@@ -941,6 +941,7 @@ function renderPool(filter = 'all') {
   filtered.forEach(s => {
     const chip = document.createElement('div');
     chip.className = 'subject-chip';
+    chip.dataset.subjectId = s.id;
     chip.draggable = true;
     chip.innerHTML = `
       <div class="chip-badge" style="background:${s.color}">${s.short}</div>
@@ -3755,3 +3756,86 @@ puEls.restartBtn?.addEventListener('click', () => {
   puEls.headSub.textContent = 'Already have a timetable? We’ll turn it into timeline sessions you can edit.';
   puShowState('drop');
 });
+
+// ── Phone: "Add subject" bottom sheet (tap instead of drag) ──
+const phoneMQ = window.matchMedia('(max-width: 640px)');
+const poolEl = document.getElementById('plannerPool');
+const poolSheetOpenBtn = document.getElementById('poolSheetOpen');
+const poolSheetCloseBtn = document.getElementById('poolSheetClose');
+const poolSheetBackdrop = document.getElementById('poolSheetBackdrop');
+const poolSlotGrid = document.getElementById('poolSlotGrid');
+const poolSheetAddBtn = document.getElementById('poolSheetAdd');
+const poolPick = { subjectId: null, lane: 1 };
+
+function renderPoolSlots() {
+  if (!poolSlotGrid) return;
+  poolSlotGrid.innerHTML = TIME_SLOTS.map((t, i) => `
+    <button class="pool-slot" type="button" role="radio" data-lane="${i}" aria-checked="${i === poolPick.lane}">
+      ${t.label}<small>${t.range}</small>
+    </button>`).join('');
+}
+
+function syncPoolSheetAdd() {
+  if (!poolSheetAddBtn) return;
+  const s = poolPick.subjectId ? subjectFor(poolPick.subjectId) : null;
+  poolSheetAddBtn.disabled = !s;
+  poolSheetAddBtn.textContent = s ? `Add ${s.name} · ${TIME_SLOTS[poolPick.lane].label} →` : 'Pick a subject';
+}
+
+function markPickedChip() {
+  poolListEl?.querySelectorAll('.subject-chip').forEach(c => c.classList.toggle('is-picked', c.dataset.subjectId === poolPick.subjectId));
+}
+
+function openPoolSheet() {
+  if (!poolEl) return;
+  poolPick.subjectId = null;
+  renderPoolSlots();
+  markPickedChip();
+  syncPoolSheetAdd();
+  poolEl.classList.add('is-open');
+  poolSheetBackdrop?.classList.remove('hidden');
+  poolSheetOpenBtn?.setAttribute('aria-expanded', 'true');
+}
+
+function closePoolSheet() {
+  poolEl?.classList.remove('is-open');
+  poolSheetBackdrop?.classList.add('hidden');
+  poolSheetOpenBtn?.setAttribute('aria-expanded', 'false');
+}
+
+poolSheetOpenBtn?.addEventListener('click', openPoolSheet);
+poolSheetCloseBtn?.addEventListener('click', closePoolSheet);
+poolSheetBackdrop?.addEventListener('click', closePoolSheet);
+
+poolListEl?.addEventListener('click', e => {
+  if (!phoneMQ.matches) return;
+  const chip = e.target.closest('.subject-chip');
+  if (!chip) return;
+  poolPick.subjectId = chip.dataset.subjectId;
+  markPickedChip();
+  syncPoolSheetAdd();
+});
+
+// Filter tabs re-render the chips; keep the picked state visible.
+document.querySelectorAll('.pool-tab').forEach(tab => tab.addEventListener('click', markPickedChip));
+
+poolSlotGrid?.addEventListener('click', e => {
+  const btn = e.target.closest('[data-lane]');
+  if (!btn) return;
+  poolPick.lane = Number(btn.dataset.lane);
+  poolSlotGrid.querySelectorAll('[data-lane]').forEach(b => b.setAttribute('aria-checked', b === btn));
+  syncPoolSheetAdd();
+});
+
+poolSheetAddBtn?.addEventListener('click', () => {
+  if (!poolPick.subjectId) return;
+  const block = addBlock(poolPick.subjectId, todayDayIndex, 21, poolPick.lane, 1.5);
+  closePoolSheet();
+  scrollToToday(true);
+  notify(`Scheduled ${subjectFor(poolPick.subjectId).name} ✓`);
+  if (typeof openTopicPanel === 'function') setTimeout(() => openTopicPanel(block), 280);
+});
+
+// Leaving phone width with the sheet open shouldn't strand the backdrop.
+phoneMQ.addEventListener?.('change', e => { if (!e.matches) closePoolSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && poolEl?.classList.contains('is-open')) closePoolSheet(); });

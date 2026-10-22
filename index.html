@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <title>PathU IAS — Personalized Preparation OS</title>
   <meta name="theme-color" content="#4426D0">
   <link rel="icon" type="image/png" href="assets/pathu-favicon.png">
@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 
 <body>
@@ -555,7 +555,15 @@
         <div class="planner-shell">
 
           <!-- SUBJECT POOL SIDEBAR -->
-          <aside class="planner-pool">
+          <aside class="planner-pool" id="plannerPool" aria-label="Subjects">
+            <!-- Phone-only sheet header -->
+            <div class="pool-sheet-head">
+              <div>
+                <span class="eyebrow">ADD TO TIMELINE</span>
+                <h2 class="pool-sheet-title">Add a subject</h2>
+              </div>
+              <button class="adhoc-modal-close" id="poolSheetClose" type="button" aria-label="Close subject list">×</button>
+            </div>
 
             <div class="pool-filter-tabs">
               <button class="pool-tab active" data-filter="all">All</button>
@@ -567,6 +575,13 @@
               <!-- Injected by JS -->
             </div>
 
+            <!-- Phone-only: tap a subject, pick a slot, add -->
+            <div class="pool-sheet-foot" id="poolSheetFoot">
+              <span class="pool-sheet-label">Time slot</span>
+              <div class="pool-slot-grid" id="poolSlotGrid" role="radiogroup" aria-label="Time slot"></div>
+              <button class="btn btn-primary pool-sheet-add" id="poolSheetAdd" type="button" disabled>Pick a subject</button>
+            </div>
+
             <div class="pool-hint">
               <div class="hint-icon">💡</div>
               <div>
@@ -575,6 +590,7 @@
               </div>
             </div>
           </aside>
+          <div class="pool-sheet-backdrop hidden" id="poolSheetBackdrop"></div>
 
           <!-- MAIN TIMELINE CANVAS AREA -->
           <main class="planner-main">
@@ -587,6 +603,8 @@
               </div>
 
               <div class="toolbar-actions">
+                <button class="btn btn-primary btn-sm pool-sheet-open" id="poolSheetOpen" type="button"
+                  aria-controls="plannerPool" aria-expanded="false">+ Add subject</button>
                 <button class="btn btn-ghost btn-sm" id="planUploadBtn" type="button" aria-haspopup="dialog"
                   title="Import an existing study plan">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
@@ -1531,7 +1549,7 @@
       </div>
     </section>
   </div>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 
 </html>
