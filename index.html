@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PathU IAS — Personalized Preparation OS</title>
+  <meta name="theme-color" content="#4426D0">
+  <link rel="icon" type="image/png" href="assets/pathu-favicon.png">
+  <link rel="apple-touch-icon" href="assets/pathu-logo.png">
+  <meta name="description" content="PathU IAS — personalized UPSC preparation operating system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=5">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ══ VERTICAL FLOATING SIDEBAR NAV ══ -->
+    <aside class="sidebar-nav" aria-label="Main Navigation">
+      <!-- Top App Icon (PathU IAS Symbol) -->
+      <button class="nav-side-btn app-logo-btn" id="appLogoBtn" title="About PathU IAS · Click to learn more"
+        aria-label="About PathU IAS" aria-haspopup="dialog" aria-expanded="false">
+        <img class="app-logo-img" src="assets/pathu-logo.png" alt="" width="36" height="36">
+      </button>
+
+      <!-- ─── ABOUT PATHU IAS MESSAGE POPOVER (Speech Bubble from "i") ─── -->
+      <div id="aboutPopover" class="about-popover hidden" role="dialog" aria-modal="false"
+        aria-labelledby="aboutPopTitle">
+        <div class="about-pop-arrow"></div>
+        <div class="about-pop-inner">
+          <div class="about-pop-header">
+            <div class="about-tag">
+              <span class="about-tag-dot"></span>
+              <span>ABOUT PATHU IAS</span>
+            </div>
+            <button class="about-pop-close" id="aboutPopClose" aria-label="Close about message">×</button>
+          </div>
+
+          <h3 id="aboutPopTitle" class="about-pop-title">
+            Hey there! <mark>Welcome to PathU IAS.</mark> 👋🏻
+          </h3>
+
+          <p class="about-pop-desc">
+            We are your <strong>personal preparation operating system</strong> for the UPSC Civil Services Examination.
+          </p>
+
+          <p class="about-pop-sub">
+            We turn massive, overwhelming syllabi into calm daily rhythms, visual interactive timelines, and focused
+            study sprints.
+          </p>
+
+          <div class="about-pop-callout">
+            <span class="about-quote-mark">“</span>
+            <div class="about-callout-text">
+              <strong>Our Core Philosophy</strong>
+              <em>Structure stays serious. Surface stays soft.</em>
+            </div>
+          </div>
+
+          <div class="about-pop-footer">
+            <span class="about-badge">🎯 Built for 2027 Aspirants</span>
+            <span class="about-badge">💙 Adaptive AI Engine</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Main Navigation Buttons (Top to Bottom) -->
+      <div class="nav-side-group">
+        <!-- 1. Today (Cute Clock) -->
+        <button class="nav-side-btn active" data-view="today" title="Today · Schedule" aria-label="Today">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8" />
+            <path d="M12 9V13L14.8 14.8" />
+            <path d="M5 4.5L7.2 6.7" />
+            <path d="M19 4.5L16.8 6.7" />
+            <path d="M9.5 3H14.5" />
+          </svg>
+        </button>
+
+        <!-- 2. Planner (Cute Calendar) -->
+        <button class="nav-side-btn" data-view="planner" title="Planner · Calendar" aria-label="Planner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="4.5" width="17" height="16" rx="4" />
+            <path d="M3.5 9.5H20.5" />
+            <path d="M8 2.5V5.5" />
+            <path d="M16 2.5V5.5" />
+            <circle cx="8" cy="13.5" r="1" fill="currentColor" />
+            <circle cx="12" cy="13.5" r="1" fill="currentColor" />
+            <circle cx="16" cy="13.5" r="1" fill="currentColor" />
+            <circle cx="8" cy="17" r="1" fill="currentColor" />
+            <circle cx="12" cy="17" r="1" fill="currentColor" />
+            <circle cx="16" cy="17" r="1" fill="currentColor" />
+          </svg>
+        </button>
+
+        <!-- 3. Study Session (Cute Timer / Stopwatch) -->
+        <button class="nav-side-btn" data-view="session" title="Study Session · Focus Timer"
+          aria-label="Study Session">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13.5" r="7.5" />
+            <path d="M12 2.5V5.5" />
+            <path d="M9.5 2.5H14.5" />
+            <path d="M12 9.5V13.5L15 11.5" />
+            <path d="M18.5 7L19.5 6" />
+          </svg>
+        </button>
+
+        <!-- 4. Progress (Cute Growth Line Graph) -->
+        <button class="nav-side-btn" data-view="progress" title="Progress · Growth Analytics" aria-label="Progress">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.5 20.5H20.5" />
+            <path d="M4.5 15.5L9.5 10.5L13.5 14.5L19.5 6.5" />
+            <path d="M15.5 6.5H19.5V10.5" />
+            <circle cx="9.5" cy="10.5" r="1.3" fill="currentColor" />
+            <circle cx="13.5" cy="14.5" r="1.3" fill="currentColor" />
+            <circle cx="19.5" cy="6.5" r="1.3" fill="currentColor" />
+          </svg>
+        </button>
+
+        <!-- 5. Mentor Review (Cute Chat Bubbles) -->
+        <button class="nav-side-btn" data-view="review" title="Review · Mentor Sessions" aria-label="Mentor Review">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 4.5H6.5C4.8 4.5 3.5 5.8 3.5 7.5V12C3.5 13.7 4.8 15 6.5 15H7.5V18L11 15H14.5C16.2 15 17.5 13.7 17.5 12V7.5C17.5 5.8 16.2 4.5 14.5 4.5Z" />
+            <path d="M17.5 9H18C19.4 9 20.5 10.1 20.5 11.5V15C20.5 16.4 19.4 17.5 18 17.5H17V20L14 17.5H12" />
+            <circle cx="7.5" cy="9.8" r="1" fill="currentColor" />
+            <circle cx="10.5" cy="9.8" r="1" fill="currentColor" />
+            <circle cx="13.5" cy="9.8" r="1" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Spacer -->
+      <div class="nav-side-spacer"></div>
+
+      <!-- Bottom Side Actions: Telegram Assistant + User Avatar -->
+      <div class="nav-side-bottom-group">
+        <!-- Telegram / External App Sync Button -->
+        <button class="nav-side-btn tele-sync-btn connected" id="teleSyncBtn"
+          title="Telegram Assistant · Connected" aria-label="Telegram Assistant · Connected"
+          aria-haspopup="dialog" aria-expanded="false">
+          <svg class="tele-plane-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2.5L10 14" />
+            <path d="M21.5 2.5L14.5 21.5L10 14L2.5 9.5L21.5 2.5Z" />
+          </svg>
+          <!-- Cute Micro Plug Status Badge on Bottom Right Corner -->
+          <span class="tele-plug-badge connected" id="telePlugBadge" title="Status: Connected">
+            <!-- Connected Plug SVG -->
+            <svg class="plug-icon plug-connected-icon" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22v-5"/>
+              <path d="M9 7V2"/>
+              <path d="M15 7V2"/>
+              <path d="M18 8v3a6 6 0 0 1-12 0V8h12z" fill="currentColor"/>
+            </svg>
+            <!-- Disconnected Plug SVG -->
+            <svg class="plug-icon plug-disconnected-icon" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22v-5"/>
+              <path d="M9 7V2"/>
+              <path d="M15 7V2"/>
+              <path d="M6 13a6 6 0 0 0 10.82 3.5"/>
+              <line x1="2" y1="2" x2="22" y2="22" stroke-width="2.2"/>
+            </svg>
+          </span>
+        </button>
+
+        <!-- User Avatar only at the Bottom Side -->
+        <div class="side-user-wrap" id="streakBadge" title="Rahul Mehta · 14-Day Study Streak 🔥" role="button"
+          tabindex="0" aria-label="Rahul Mehta · 14-day study streak">
+          <div class="side-avatar-circle">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="18" fill="#DDD6FE" />
+              <path d="M9 36C9 30.5 13 27 18 27C23 27 27 30.5 27 36" fill="#1E293B" />
+              <circle cx="18" cy="16" r="7" fill="#FDE68A" />
+              <path d="M12 14C12 11 14 9 18 9C22 9 24 11 24 14C24 12 22 10 18 10C14 10 12 12 12 14Z" fill="#1E293B" />
+              <rect x="13" y="14" width="4" height="3.5" rx="1" stroke="#1E293B" stroke-width="1" fill="none" />
+              <rect x="19" y="14" width="4" height="3.5" rx="1" stroke="#1E293B" stroke-width="1" fill="none" />
+              <line x1="17" y1="15.5" x2="19" y2="15.5" stroke="#1E293B" stroke-width="1" />
+              <path d="M16 19C17 20 19 20 20 19" stroke="#1E293B" stroke-width="1" stroke-linecap="round" />
+            </svg>
+          </div>
+          <span class="side-user-badge">↗</span>
+        </div>
+      </div>
+
+      <!-- ─── TELEGRAM / EXTERNAL APP CONNECTION POPOVER ─── -->
+      <div id="telePopover" class="tele-popover hidden" role="dialog" aria-modal="false"
+        aria-labelledby="telePopTitle">
+        <div class="tele-pop-arrow"></div>
+        <div class="tele-pop-inner">
+          <div class="tele-pop-header">
+            <div class="tele-tag">
+              <span class="tele-tag-icon">✈️</span>
+              <span id="teleTagText">TELEGRAM SYNC</span>
+            </div>
+            <span class="tele-status-pill connected" id="teleStatusPill">
+              <svg class="pill-plug-icon plug-connected-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22v-5"/>
+                <path d="M9 7V2"/>
+                <path d="M15 7V2"/>
+                <path d="M18 8v3a6 6 0 0 1-12 0V8h12z" fill="currentColor"/>
+              </svg>
+              <svg class="pill-plug-icon plug-disconnected-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22v-5"/>
+                <path d="M9 7V2"/>
+                <path d="M15 7V2"/>
+                <path d="M6 13a6 6 0 0 0 10.82 3.5"/>
+                <line x1="2" y1="2" x2="22" y2="22" stroke-width="2.2"/>
+              </svg>
+              <span id="telePillLabel">Connected</span>
+            </span>
+            <button class="about-pop-close" id="telePopClose" aria-label="Close Telegram connection dialog">×</button>
+          </div>
+
+          <h3 id="telePopTitle" class="tele-pop-title">
+            Your Mobile Study <mark>Companion</mark> ⚡
+          </h3>
+
+          <p class="tele-pop-desc" id="telePopDesc">
+            Connected to <strong>@rahul_upsc</strong> via <strong>@pathu_ias_bot</strong>. Complete tasks, log revisions & get smart study nudges directly on Telegram.
+          </p>
+
+          <!-- Connected Account Card -->
+          <div class="tele-account-card" id="teleAccountCard">
+            <div class="tele-card-left">
+              <div class="tele-bot-avatar" id="teleBotAvatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2.5L10 14" />
+                  <path d="M21.5 2.5L14.5 21.5L10 14L2.5 9.5L21.5 2.5Z" />
+                </svg>
+              </div>
+              <div>
+                <div class="tele-user-handle" id="teleUserHandle">@rahul_upsc</div>
+                <div class="tele-sync-meta" id="teleSyncMeta">Sync active · Webhook live</div>
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-sm tele-toggle-btn" id="teleToggleBtn">
+              Disconnect
+            </button>
+          </div>
+
+          <!-- Feature Bullets -->
+          <div class="tele-features-list">
+            <div class="tele-feature-item">
+              <span class="tele-feat-glyph">💬</span>
+              <div>
+                <strong>Remote Task Checkoff</strong>
+                <small>Reply <code>/done 1</code> to complete sessions on the go</small>
+              </div>
+            </div>
+            <div class="tele-feature-item">
+              <span class="tele-feat-glyph">⏰</span>
+              <div>
+                <strong>Gentle Study Reminders</strong>
+                <small>Prompt start & break nudges for planned blocks</small>
+              </div>
+            </div>
+            <div class="tele-feature-item">
+              <span class="tele-feat-glyph">🧠</span>
+              <div>
+                <strong>Daily Active Recall</strong>
+                <small>3-minute flashcard drills synced to your syllabus</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="tele-pop-actions">
+            <button class="btn btn-primary btn-sm tele-action-primary" id="telePingBtn">
+              Send Test Sync Ping 📨
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════════
+       WORKSPACE
+  ══════════════════════════════════ -->
+    <div class="workspace">
+
+      <!-- ─── TODAY ─── -->
+      <section id="today" class="view">
+
+        <!-- ─── TODAY HERO & GREETING ─── -->
+        <div class="today-hero">
+          <div class="today-hero-left">
+            <div class="cute-greeting-pill">
+              <span class="cute-greeting-text">Good morning, <strong>Rahul!</strong></span>
+              <span class="wave-hand">👋🏻</span>
+            </div>
+            <h1 class="today-hero-title">Let's make today <mark>count.</mark></h1>
+          </div>
+        </div>
+
+        <!-- stat stickers -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="sticker sticker--blue">
+              <svg viewBox="0 0 100 100">
+                <path
+                  d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z" />
+              </svg>
+              <span class="glyph">✦</span>
+            </div>
+            <div>
+              <div class="stat-num">WEEK 5</div>
+              <div class="stat-label">Out of 24</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="sticker sticker--yellow">
+              <svg viewBox="0 0 100 100">
+                <path
+                  d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z" />
+              </svg>
+              <span class="glyph">◷</span>
+            </div>
+            <div>
+              <div class="stat-num">6 HOURS</div>
+              <div class="stat-label">Available today</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="sticker sticker--purple">
+              <svg viewBox="0 0 100 100">
+                <path
+                  d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z" />
+              </svg>
+              <span class="glyph" id="stat-done-glyph">✓</span>
+            </div>
+            <div>
+              <div class="stat-num" id="stat-done-num">1 / 8 Tasks</div>
+              <div class="stat-label" id="stat-done-label">Completed today · 13%</div>
+            </div>
+          </div>
+          <div class="stat-card" id="stat-subject-card" data-view="progress" title="View subject progress" style="cursor: pointer;">
+            <div class="sticker sticker--green" id="stat-subject-sticker">
+              <svg viewBox="0 0 100 100">
+                <path
+                  d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z" />
+              </svg>
+              <span class="glyph" id="stat-subject-glyph" title="Editorial streak">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              </span>
+            </div>
+            <div>
+              <div class="stat-num" id="stat-subject-num">DAY 34 STREAK</div>
+              <div class="stat-label" id="stat-subject-label">Daily reading · 100% on track</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="today-layout">
+          <div class="today-main">
+
+            <!-- NEXT ACTION -->
+            <div class="next-card">
+              <div class="next-body">
+                <label class="eyebrow">NEXT ACTION</label>
+                <h2 class="next-title">Polity <i>·</i> Fundamental Rights</h2>
+                <p class="next-desc">Understand the constitutional basis, key provisions and landmark cases.</p>
+                <div class="next-meta">
+                  <span>⏱ 90 min</span>
+                  <span>·</span>
+                  <span>☕ Morning</span>
+                  <!-- <span>·</span> -->
+                  <!-- <b class="on-track-badge">● On track</b> -->
+                </div>
+              </div>
+              <div class="next-actions">
+                <button class="btn btn-primary next-action-btn" id="startSession">Start session →</button>
+                <!-- <span class="next-icon">✦</span> -->
+              </div>
+            </div>
+
+            <!-- TODAY'S RHYTHM SECTION HEADER -->
+            <div class="rhythm-header">
+              <div class="rhythm-header-left">
+                <h2 class="rhythm-heading">Today's Tasks</h2>
+                <p class="rhythm-sub" id="rhythmSub">8 sessions · 6h 40m planned</p>
+              </div>
+              <div class="rhythm-header-actions">
+                <button class="btn-link rhythm-add-link" id="addTaskBtn" type="button">+ Add task</button>
+                <button class="btn-link rhythm-adjust-link" data-view="planner">Adjust plan ↗</button>
+              </div>
+            </div>
+
+            <!-- CLEAN INDEPENDENT TASK CARD (Auto-focus & scrollable card stack wheel) -->
+            <div class="task-card task-wheel-viewport" id="taskWheelViewport">
+              <div class="wheel-gradient-top"></div>
+              <div class="task-list task-wheel-track" id="todayTaskList">
+                <!-- Task 1: Ready Now (Initial Active Task when 0 completed) -->
+                <div class="task current" data-task-idx="0">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark The Hindu Editorial notes as complete" title="Mark as complete"></button>
+                  <time>07:30<br><small>60 min</small></time>
+                  <div class="task-info">
+                    <strong>The Hindu · Editorial notes</strong>
+                    <small>Newspaper</small>
+                  </div>
+                  <label class="task-status ready">Ready now</label>
+                </div>
+
+                <!-- Task 2: Upcoming -->
+                <div class="task" data-task-idx="1">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Fundamental Rights as complete" title="Mark as complete"></button>
+                  <time>09:00<br><small>90 min</small></time>
+                  <div class="task-info">
+                    <strong>Fundamental Rights</strong>
+                    <small>Polity</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 3: Upcoming -->
+                <div class="task" data-task-idx="2">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Polity Topic MCQs as complete" title="Mark as complete"></button>
+                  <time>11:00<br><small>45 min</small></time>
+                  <div class="task-info">
+                    <strong>Polity · Topic MCQs</strong>
+                    <small>Practice</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 4: Upcoming -->
+                <div class="task" data-task-idx="3">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Economic Survey Macro Highlights as complete" title="Mark as complete"></button>
+                  <time>15:00<br><small>60 min</small></time>
+                  <div class="task-info">
+                    <strong>Economic Survey · Macro Highlights</strong>
+                    <small>Economy</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 5: Upcoming -->
+                <div class="task" data-task-idx="4">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Federalism 15 marker as complete" title="Mark as complete"></button>
+                  <time>18:30<br><small>60 min</small></time>
+                  <div class="task-info">
+                    <strong>Federalism — 15 marker</strong>
+                    <small>Answer writing</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 6: Upcoming -->
+                <div class="task" data-task-idx="5">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Daily Revision and Active Recall as complete" title="Mark as complete"></button>
+                  <time>21:00<br><small>30 min</small></time>
+                  <div class="task-info">
+                    <strong>Daily Revision & Active Recall</strong>
+                    <small>Review</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 7: Upcoming -->
+                <div class="task" data-task-idx="6">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark CSAT Quant and Logical Reasoning as complete" title="Mark as complete"></button>
+                  <time>21:45<br><small>30 min</small></time>
+                  <div class="task-info">
+                    <strong>CSAT · Quant & Logical Reasoning</strong>
+                    <small>CSAT Aptitude</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+
+                <!-- Task 8: Upcoming -->
+                <div class="task" data-task-idx="7">
+                  <button class="check-box" role="checkbox" aria-checked="false"
+                    aria-label="Mark Nightly Review and Assistant Audit as complete" title="Mark as complete"></button>
+                  <time>22:15<br><small>25 min</small></time>
+                  <div class="task-info">
+                    <strong>Nightly Review & Assistant Audit</strong>
+                    <small>Learning Quality Review</small>
+                  </div>
+                  <label class="task-status">Upcoming</label>
+                </div>
+              </div>
+              <div class="wheel-gradient-bottom"></div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDEBAR (PROGRESS CARD + PREPARATION CARD) -->
+          <aside class="today-sidebar">
+
+            <!-- TODAY'S PROGRESS CARD (Height matches NEXT ACTION) -->
+            <div class="sidebar-card progress-summary-card">
+              <div class="prog-card-top">
+                <label class="eyebrow">TODAY'S PROGRESS</label>
+                <span class="prog-pct-pill" id="todayProgPct">13%</span>
+              </div>
+              <div class="prog-stat-main">
+                <h3 class="prog-stat-title" id="todayDoneTasks">1 <small>/ 8 sessions completed</small></h3>
+                <div class="prog-bar-track">
+                  <div class="prog-bar-fill" id="todayProgFill" style="width: 13%;"></div>
+                </div>
+                <div class="prog-meta-row">
+                  <span id="todayActualTime">1h 00m spent</span>
+                  <span id="todayRemainTime">5h 40m left</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- YOUR PREPARATION CONTEXT CARD -->
+            <div class="sidebar-card context-panel">
+              <label class="eyebrow">YOUR PREPARATION</label>
+              <div class="ring-wrap">
+                <div class="ring">
+                  <b>68%</b>
+                  <small>week 5</small>
+                </div>
+              </div>
+              <h3 class="panel-title">Steady pace</h3>
+              <p class="panel-sub" style="text-align:center;margin-top:4px">You're 1 day ahead of your review.</p>
+              <hr class="divider">
+              <label class="eyebrow">THIS WEEK</label>
+              <h3 class="panel-big">24.5 <small>/ 42 hrs</small></h3>
+              <div class="mini-track">
+                <div class="mini-fill"></div>
+              </div>
+              <p class="panel-sub">17h 30m still planned</p>
+              <!-- <label class="eyebrow" style="margin-top:18px">UP NEXT</label> -->
+              <!-- <h3 class="panel-big" style="font-size:16px;margin-top:4px">Economy · Banking</h3>
+              <p class="panel-sub">Tomorrow · 90 min</p> -->
+              <button class="panel-link" data-view="progress">View full progress →</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ─── PLANNER ─── -->
+      <section id="planner" class="view full-view hidden">
+        <div class="planner-shell">
+
+          <!-- SUBJECT POOL SIDEBAR -->
+          <aside class="planner-pool">
+
+            <div class="pool-filter-tabs">
+              <button class="pool-tab active" data-filter="all">All</button>
+              <button class="pool-tab" data-filter="core">GS Core</button>
+              <button class="pool-tab" data-filter="practice">Practice</button>
+            </div>
+
+            <div id="pool-list" class="pool-list">
+              <!-- Injected by JS -->
+            </div>
+
+            <div class="pool-hint">
+              <div class="hint-icon">💡</div>
+              <div>
+                <strong>Drag onto timeline</strong>
+                <span>Resize edges to adjust span · bottom grip for daily hours</span>
+              </div>
+            </div>
+          </aside>
+
+          <!-- MAIN TIMELINE CANVAS AREA -->
+          <main class="planner-main">
+
+            <div class="planner-toolbar">
+              <div class="toolbar-info">
+                <div class="toolbar-title-row">
+                  <h1>Preparation <mark>timeline</mark></h1>
+                </div>
+              </div>
+
+              <div class="toolbar-actions">
+                <button class="btn btn-ghost btn-sm" id="planUploadBtn" type="button" aria-haspopup="dialog"
+                  title="Import an existing study plan">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 15V4" />
+                    <path d="M7.5 8.5L12 4L16.5 8.5" />
+                    <path d="M4 15V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15" />
+                  </svg>
+                  Upload plan
+                </button>
+                <div class="btn-group">
+                  <button class="btn btn-ghost btn-sm" id="zoom-out" title="Zoom out" aria-label="Zoom out planner">−
+                    Zoom</button>
+                  <button class="btn btn-ghost btn-sm" id="zoom-in" title="Zoom in" aria-label="Zoom in planner">+
+                    Zoom</button>
+                </div>
+                <button class="btn btn-primary btn-sm" id="jump-today" aria-label="Jump to today">📍 Jump to
+                  today</button>
+              </div>
+            </div>
+
+
+
+            <!-- The Timeline Grid Container -->
+            <div class="canvas-outer">
+              <!-- Left Time-of-Day Axis -->
+              <div class="time-axis" id="time-axis">
+                <div class="time-axis-header">Study slot</div>
+                <!-- Injected by JS -->
+              </div>
+
+              <!-- Scrollable Date Grid Canvas -->
+              <div class="canvas-wrap" id="canvas-wrap">
+                <div class="canvas-inner" id="canvas-inner">
+                  <div class="grid-bg" id="grid-bg"></div>
+                  <div class="month-row" id="month-row"></div>
+                  <div class="day-row" id="day-row"></div>
+                  <div class="lanes" id="lanes">
+                    <div class="today-marker" id="today-marker">
+                      <div class="today-flag">Today · Sep 3</div>
+                    </div>
+                    <!-- 6 lanes for 6 slots -->
+                    <div class="lane"></div>
+                    <div class="lane"></div>
+                    <div class="lane"></div>
+                    <div class="lane"></div>
+                    <div class="lane"></div>
+                    <div class="lane"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </main>
+
+          <!-- CONTEXTUAL SESSION DRAWER -->
+          <div id="session-drawer" class="drawer hidden">
+            <button class="drawer-close" id="drawerClose" aria-label="Close panel">×</button>
+            <label class="eyebrow" id="drawer-eyebrow">PLANNED SESSION</label>
+            <h2 id="drawer-title">Polity · Fundamental Rights</h2>
+            <p class="drawer-sub" id="drawer-timing">90 minutes · Morning Focus</p>
+
+            <div class="why-box">
+              <label class="eyebrow">WHY PATHU IAS SCHEDULED THIS</label>
+              <strong id="drawer-why">Keeps your Polity foundation on pace for the Sectional Test in Week 6 without
+                sacrificing Economy revision.</strong>
+            </div>
+
+            <div class="drawer-meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">DAILY DURATION</span>
+                <strong id="drawer-hours">2.0 hrs / day</strong>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">SPAN</span>
+                <strong id="drawer-span">28 days</strong>
+              </div>
+            </div>
+
+            <!-- Direct Date & Span Inputs for Keyboard / Precision Editing -->
+            <div class="drawer-inputs-row"
+              style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;">
+              <div>
+                <label class="eyebrow" for="drawer-start-date" style="display:block; margin-bottom:4px;">START
+                  DATE</label>
+                <input type="date" id="drawer-start-date" class="drawer-input" aria-label="Session start date"
+                  style="width:100%; padding:8px 10px; border-radius:var(--r-sm); border:1px solid var(--line); font-family:var(--font-body); font-size:13px;">
+              </div>
+              <div>
+                <label class="eyebrow" for="drawer-span-days" style="display:block; margin-bottom:4px;">SPAN
+                  (DAYS)</label>
+                <input type="number" id="drawer-span-days" min="3" max="363" class="drawer-input"
+                  aria-label="Duration in days"
+                  style="width:100%; padding:8px 10px; border-radius:var(--r-sm); border:1px solid var(--line); font-family:var(--font-body); font-size:13px;">
+              </div>
+            </div>
+
+            <label class="eyebrow" style="margin-top:16px;">ADJUST DURATION</label>
+            <div class="seg-control">
+              <button class="seg-btn" data-dur="1">1.0h</button>
+              <button class="seg-btn selected" data-dur="1.5">1.5h</button>
+              <button class="seg-btn" data-dur="2">2.0h</button>
+              <button class="seg-btn" data-dur="3">3.0h</button>
+            </div>
+
+            <div style="display:flex; gap:8px; margin-top:18px;">
+              <button class="btn btn-primary" id="saveDrawer" style="flex:1; justify-content:center;">Save
+                adjustment</button>
+              <button class="btn btn-ghost" id="deleteDrawerBlock"
+                style="color:#d9534f; border-color:var(--pink);">Delete</button>
+            </div>
+          </div>
+
+          <!-- ══ TOPIC PLANNER PANEL (3-level drill-down) ══ -->
+          <div id="topic-planner-panel" class="drawer tpp-panel hidden" role="dialog"
+               aria-modal="false" aria-labelledby="tpp-panel-title">
+
+            <!-- Shared sticky header (visible on all 3 levels) -->
+            <div class="tpp-header">
+              <button class="tpp-back-btn" id="tppBackBtn" aria-label="Go back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5M12 5l-7 7 7 7"/>
+                </svg>
+                <span id="tppBackLabel">Weeks</span>
+              </button>
+              <span class="tpp-header-title" id="tpp-panel-title"></span>
+              <button class="tpp-close-btn" id="tppCloseBtn" aria-label="Close topic planner">×</button>
+            </div>
+
+            <!-- aria-live region for state announcements -->
+            <div aria-live="polite" aria-atomic="true" class="tpp-live-region" id="tppLiveRegion"></div>
+
+            <!-- ── LEVEL 1: Week breakdown ── -->
+            <div class="tpp-level" id="tpp-level-1">
+              <div class="tpp-subject-banner" id="tpp-subject-banner">
+                <!-- Injected by JS: "Polity · Aug 25 – Sep 28 · 35 days" -->
+              </div>
+              <div class="tpp-week-list" id="tpp-week-list" role="list">
+                <!-- Week cards injected by JS -->
+              </div>
+              <div class="tpp-l1-footer">
+                <button class="tpp-adjust-link" id="tppAdjustDatesBtn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  Adjust dates &amp; hours
+                </button>
+              </div>
+            </div>
+
+            <!-- ── LEVEL 2: Day list ── -->
+            <div class="tpp-level tpp-hidden" id="tpp-level-2">
+              <div class="tpp-level2-header" id="tpp-level2-header">
+                <!-- "Week 1 · Aug 25 – Aug 31" injected by JS -->
+              </div>
+              <div class="tpp-day-list" id="tpp-day-list" role="list">
+                <!-- Day rows injected by JS -->
+              </div>
+            </div>
+
+            <!-- ── LEVEL 3: Day assignment ── -->
+            <div class="tpp-level tpp-hidden" id="tpp-level-3">
+              <div class="tpp-date-banner" id="tpp-date-banner">
+                <!-- "Wednesday, Aug 27" injected by JS -->
+              </div>
+              <p class="tpp-assign-hint">Tap a topic to expand, then check subtopics to assign.</p>
+              <div class="tpp-topic-scroll" id="tpp-topic-scroll">
+                <div class="tpp-topic-list" id="tpp-topic-list" role="list">
+                  <!-- Topic accordion injected by JS -->
+                </div>
+              </div>
+              <div class="tpp-l3-footer">
+                <button class="tpp-save-btn" id="tppSaveBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Assign to this day
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /topic-planner-panel -->
+
+        </div>
+      </section>
+
+      <!-- ─── STUDY SESSION ─── -->
+      <section id="session" class="view hidden">
+
+        <div class="session-header">
+          <button class="session-back" data-view="today">← Back to Today</button>
+          <span class="status-pill running" id="session-status">● In progress</span>
+        </div>
+
+        <div>
+          <div class="session-subject">CURRENT SESSION · POLITY</div>
+          <h1 class="session-topic">Fundamental Rights</h1>
+          <div class="session-meta">
+            <span>90 minutes</span><span>·</span>
+            <span>Morning focus</span><span>·</span>
+            <span>Laxmikanth · Ch. 7</span>
+          </div>
+        </div>
+
+        <div class="timer-wrap">
+          <div class="timer-circle" id="timerCircle">
+            <div class="timer-inner">
+              <b id="timer-display">32:14</b>
+              <small>ELAPSED</small>
+            </div>
+          </div>
+          <div class="timer-info">
+            <h3>32 of 90 minutes complete</h3>
+            <p>You're in the right rhythm. Keep going — 58 minutes remaining in this session.</p>
+
+            <!-- Confidence — inline card before finishing -->
+            <div class="confidence-card" style="margin-top:14px; margin-bottom:14px;">
+              <div class="confidence-card-inner">
+                <div>
+                  <h4>How confident are you feeling?</h4>
+                  <p class="sub" style="margin-top:3px">We'll remind you based on your score.</p>
+                </div>
+                <div class="conf-stars" id="confStars">
+                  <button class="conf-star" data-val="1" aria-label="Set confidence to 1 of 5">①</button>
+                  <button class="conf-star" data-val="2" aria-label="Set confidence to 2 of 5">②</button>
+                  <button class="conf-star" data-val="3" aria-label="Set confidence to 3 of 5">③</button>
+                  <button class="conf-star" data-val="4" aria-label="Set confidence to 4 of 5">④</button>
+                  <button class="conf-star" data-val="5" aria-label="Set confidence to 5 of 5">⑤</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="timer-actions">
+              <button class="btn btn-primary" id="pauseBtn">⏸ &nbsp;Pause</button>
+              <button class="btn btn-ghost" id="finishBtn">Finish session →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="objective-card">
+          <h3>Session objectives <span id="obj-count"
+              style="font-size:13px; font-weight:500; color:var(--muted); margin-left:8px;">1/4 complete</span></h3>
+          <ul class="objective-list">
+            <li><button class="obj-check done" role="checkbox" aria-checked="true"
+                aria-label="Understand the constitutional basis of Fundamental Rights">✓</button><span>Understand the
+                constitutional basis of Fundamental
+                Rights</span></li>
+            <li><button class="obj-check" role="checkbox" aria-checked="false"
+                aria-label="Map key provisions Articles 12 to 35 to their categories"></button><span>Map key provisions
+                (Articles 12–35) to their categories</span>
+            </li>
+            <li><button class="obj-check" role="checkbox" aria-checked="false"
+                aria-label="Connect landmark cases Kesavananda, Maneka Gandhi"></button><span>Connect landmark cases —
+                Kesavananda, Maneka Gandhi</span></li>
+            <li><button class="obj-check" role="checkbox" aria-checked="false"
+                aria-label="Identify PYQ relevance and common exam angles"></button><span>Identify PYQ relevance and
+                common exam angles</span></li>
+          </ul>
+        </div>
+
+        <div class="reference-card">
+          <div class="ref-icon">📖</div>
+          <div class="ref-text">
+            <strong>Laxmikanth — Chapter 7: Fundamental Rights</strong>
+            <small>Pages 7.1 – 7.24 &nbsp;·&nbsp; Primary reference for this session</small>
+          </div>
+          <button class="btn btn-ghost btn-sm btn-disabled" disabled
+            style="margin-left:auto; opacity:0.4; cursor:not-allowed;" title="Reference reader coming soon">Open
+            →</button>
+        </div>
+
+      </section>
+
+
+
+      <!-- ─── PROGRESS ─── -->
+      <section id="progress" class="view hidden">
+        <div class="page-intro">
+          <div>
+            <label class="eyebrow">THE BIG PICTURE</label>
+            <h1>Your progress, <mark>clearly.</mark></h1>
+          </div>
+          <button class="btn btn-ghost">Last 30 days ⌄</button>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <label class="eyebrow">THIS WEEK'S STUDY</label>
+            <b>36.5 <small>/ 42 hrs</small></b><i class="warn-value">−5.5 hrs gap · 87% met</i>
+          </div>
+          <div class="metric-card">
+            <label class="eyebrow">DAILY AVERAGE</label>
+            <b>5.2 <small>hrs / day</small></b><i>↑ 12% VS LAST WEEK</i>
+          </div>
+          <div class="metric-card">
+            <label class="eyebrow">QUALITY SCORE</label>
+            <b>78 <small>/ 100</small></b><i>STRONG FOUNDATION</i>
+          </div>
+          <div class="metric-card">
+            <label class="eyebrow">SYLLABUS POSITION</label>
+            <b>Week 5 <small>· Day 3</small></b><i>ON SCHEDULE</i>
+          </div>
+        </div>
+
+        <div class="insights-grid">
+          <div class="chart-area screentime-chart-card">
+            <div class="chart-header">
+              <div>
+                <h3>Daily study breakdown</h3>
+                <p class="sub">Hours spent per subject · last 7 days</p>
+              </div>
+              <div class="chart-header-stat">
+                <span class="eyebrow">DAILY AVG</span>
+                <strong class="chart-avg-val">5h 13m <small class="text-green">↑ 12%</small></strong>
+              </div>
+            </div>
+
+            <!-- iOS Screen Time Style Multi-Color Stacked Chart -->
+            <div class="screentime-chart-container">
+              <!-- Grid background with dashed lines & avg line -->
+              <div class="st-grid-lines">
+                <div class="st-grid-line" style="bottom: 100%;"><span class="st-y-label">8h</span></div>
+                <div class="st-grid-line" style="bottom: 75%;"><span class="st-y-label">6h</span></div>
+                <div class="st-grid-line st-avg-line" style="bottom: 65%;">
+                  <span class="st-avg-label">avg</span>
+                </div>
+                <div class="st-grid-line" style="bottom: 50%;"><span class="st-y-label">4h</span></div>
+                <div class="st-grid-line" style="bottom: 25%;"><span class="st-y-label">2h</span></div>
+                <div class="st-grid-line st-base-line" style="bottom: 0%;"><span class="st-y-label">0</span></div>
+              </div>
+
+              <!-- Stacked Bars -->
+              <div class="st-bars-wrap">
+                <!-- Sunday (3.5h) -->
+                <div class="st-bar-col" data-day="Sunday" data-total="3h 30m"
+                  data-detail="Polity: 1.5h · Economy: 1.0h · CA: 1.0h">
+                  <div class="st-bar" style="height: 43.75%;">
+                    <div class="st-seg" style="height: 43%; background: #4D85FB;" title="Polity: 1.5h"></div>
+                    <div class="st-seg" style="height: 28.5%; background: #06B6D4;" title="Geography: 1.0h"></div>
+                    <div class="st-seg" style="height: 28.5%; background: #F59E0B;" title="Economy: 1.0h"></div>
+                    <div class="st-seg" style="height: 28.5%; background: #CBD5E1;" title="CSAT / Review: 0.5h"></div>
+                  </div>
+                  <span class="st-day-label">S</span>
+                </div>
+
+                <!-- Monday (3.2h) -->
+                <div class="st-bar-col" data-day="Monday" data-total="3h 15m"
+                  data-detail="Polity: 1.5h · History: 1.0h · CA: 0.75h">
+                  <div class="st-bar" style="height: 40.6%;">
+                    <div class="st-seg" style="height: 46%; background: #4D85FB;" title="Polity: 1.5h"></div>
+                    <div class="st-seg" style="height: 31%; background: #06B6D4;" title="Geography: 1.0h"></div>
+                    <div class="st-seg" style="height: 23%; background: #F59E0B;" title="Economy: 0.75h"></div>
+                    <div class="st-seg" style="height: 20%; background: #CBD5E1;" title="Review: 0.5h"></div>
+                  </div>
+                  <span class="st-day-label">M</span>
+                </div>
+
+                <!-- Tuesday (7.2h) -->
+                <div class="st-bar-col" data-day="Tuesday" data-total="7h 15m"
+                  data-detail="Polity: 4.0h · Geography: 1.5h · Economy: 1.0h · Other: 0.75h">
+                  <div class="st-bar" style="height: 90.6%;">
+                    <div class="st-seg" style="height: 55%; background: #4D85FB;" title="Polity: 4.0h"></div>
+                    <div class="st-seg" style="height: 21%; background: #06B6D4;" title="Geography: 1.5h"></div>
+                    <div class="st-seg" style="height: 14%; background: #F59E0B;" title="Economy: 1.0h"></div>
+                    <div class="st-seg" style="height: 10%; background: #CBD5E1;" title="Other: 0.75h"></div>
+                  </div>
+                  <span class="st-day-label">T</span>
+                </div>
+
+                <!-- Wednesday (7.5h) -->
+                <div class="st-bar-col active-today" data-day="Wednesday (Today)" data-total="7h 30m"
+                  data-detail="Polity: 3.5h · Geography: 1.5h · Economy: 1.5h · Review: 1.0h">
+                  <div class="st-bar" style="height: 93.75%;">
+                    <div class="st-seg" style="height: 47%; background: #4D85FB;" title="Polity: 3.5h"></div>
+                    <div class="st-seg" style="height: 20%; background: #06B6D4;" title="Geography: 1.5h"></div>
+                    <div class="st-seg" style="height: 20%; background: #F59E0B;" title="Economy: 1.5h"></div>
+                    <div class="st-seg" style="height: 13%; background: #CBD5E1;" title="Review: 1.0h"></div>
+                  </div>
+                  <span class="st-day-label today-dot">W</span>
+                </div>
+
+                <!-- Thursday (6.5h) -->
+                <div class="st-bar-col" data-day="Thursday" data-total="6h 30m"
+                  data-detail="Polity: 2.5h · Geography: 2.0h · Economy: 1.0h · Other: 1.0h">
+                  <div class="st-bar" style="height: 81.25%;">
+                    <div class="st-seg" style="height: 38%; background: #4D85FB;" title="Polity: 2.5h"></div>
+                    <div class="st-seg" style="height: 31%; background: #06B6D4;" title="Geography: 2.0h"></div>
+                    <div class="st-seg" style="height: 15%; background: #F59E0B;" title="Economy: 1.0h"></div>
+                    <div class="st-seg" style="height: 16%; background: #CBD5E1;" title="Other: 1.0h"></div>
+                  </div>
+                  <span class="st-day-label">T</span>
+                </div>
+
+                <!-- Friday (1.2h) -->
+                <div class="st-bar-col" data-day="Friday" data-total="1h 15m"
+                  data-detail="Polity: 0.75h · Geography: 0.25h · Other: 0.15h">
+                  <div class="st-bar" style="height: 15.6%;">
+                    <div class="st-seg" style="height: 60%; background: #4D85FB;" title="Polity: 0.75h"></div>
+                    <div class="st-seg" style="height: 25%; background: #06B6D4;" title="Geography: 0.25h"></div>
+                    <div class="st-seg" style="height: 15%; background: #CBD5E1;" title="Other: 0.15h"></div>
+                  </div>
+                  <span class="st-day-label">F</span>
+                </div>
+
+                <!-- Saturday (0.5h) -->
+                <div class="st-bar-col" data-day="Saturday" data-total="0h 30m" data-detail="Review: 0.5h">
+                  <div class="st-bar" style="height: 6.25%;">
+                    <div class="st-seg" style="height: 100%; background: #CBD5E1;" title="Review: 0.5h"></div>
+                  </div>
+                  <span class="st-day-label">S</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subject Legend Row matching Screen Time -->
+            <div class="st-legend-row">
+              <div class="st-legend-item">
+                <strong class="st-legend-name" style="color: #007AFF;">Polity & Law</strong>
+                <span class="st-legend-time">13h 17m</span>
+              </div>
+              <div class="st-legend-item">
+                <strong class="st-legend-name" style="color: #00C7BE;">Geography & Env</strong>
+                <span class="st-legend-time">5h 46m</span>
+              </div>
+              <div class="st-legend-item">
+                <strong class="st-legend-name" style="color: #FF9500;">Economy & CA</strong>
+                <span class="st-legend-time">2h 01m</span>
+              </div>
+              <div class="st-legend-item">
+                <strong class="st-legend-name" style="color: #64748B;">Review & Other</strong>
+                <span class="st-legend-time">3h 55m</span>
+              </div>
+            </div>
+
+            <!-- Total Study Time Summary -->
+            <div class="st-total-footer">
+              <span class="st-total-label">Total Study Time</span>
+              <strong class="st-total-value">26h 04m</strong>
+            </div>
+          </div>
+          <div class="subjects-area">
+            <h3>Subject progress</h3>
+            <p class="sub">Coverage across active syllabus</p>
+            <div class="subject-row"><span>Polity</span><b id="progPolityVal">72%</b>
+              <div class="sub-track">
+                <div class="sub-fill" id="progPolityFill" style="width:72%;background:var(--periwinkle)"></div>
+              </div>
+            </div>
+            <div class="subject-row"><span>Economy</span><b id="progEconVal">58%</b>
+              <div class="sub-track">
+                <div class="sub-fill" id="progEconFill" style="width:58%;background:var(--yellow)"></div>
+              </div>
+            </div>
+            <div class="subject-row"><span>History</span><b id="progHistVal">46%</b>
+              <div class="sub-track">
+                <div class="sub-fill" id="progHistFill" style="width:46%;background:var(--purple)"></div>
+              </div>
+            </div>
+            <div class="subject-row"><span>Geography</span><b id="progGeoVal">39%</b>
+              <div class="sub-track">
+                <div class="sub-fill" id="progGeoFill" style="width:39%;background:var(--green-ok)"></div>
+              </div>
+            </div>
+            <div class="subject-row"><span>Environment</span><b id="progEnvVal">28%</b>
+              <div class="sub-track">
+                <div class="sub-fill" id="progEnvFill" style="width:28%;background:var(--pink)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="interpret-box">
+          <b class="interp-star">✦</b>
+          <div>
+            <strong>What this tells us</strong>
+            <small>You're 5.5 hours below this week's planned study time, but your quality score remains strong. Protect
+              your answer-writing practice next — highest-leverage activity before the sectional test.</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── MENTOR REVIEW ─── -->
+      <section id="review" class="view hidden" aria-labelledby="mrPageTitle">
+        <div class="page-intro">
+          <div>
+            <label class="eyebrow">MENTOR REVIEW</label>
+            <h1 id="mrPageTitle">Talk it through with a <mark>mentor.</mark></h1>
+            <p class="sub">Book a 1:1 review whenever you need one — weekly, monthly, or right before a big test.</p>
+          </div>
+          <button class="btn btn-primary" id="mrJumpToBook" type="button">+ Book a review</button>
+        </div>
+
+        <!-- UPCOMING REVIEWS -->
+        <div class="rhythm-header">
+          <div class="rhythm-header-left">
+            <h2 class="rhythm-heading">Upcoming reviews</h2>
+            <p class="rhythm-sub" id="mrUpcomingSub">Nothing scheduled yet</p>
+          </div>
+        </div>
+        <div class="mr-upcoming-list" id="mrUpcomingList" aria-live="polite"></div>
+
+        <!-- BOOK A REVIEW (4-step inline stepper) -->
+        <div class="mr-booker" id="mrBooker">
+          <div class="mr-booker-head">
+            <div>
+              <label class="eyebrow">NEW REVIEW</label>
+              <h2 class="mr-booker-title">Book a review</h2>
+            </div>
+            <ol class="mr-steps" id="mrSteps" aria-label="Booking steps">
+              <li class="mr-step" data-step="1"><span class="mr-step-num">1</span><span class="mr-step-label">Topics</span></li>
+              <li class="mr-step" data-step="2"><span class="mr-step-num">2</span><span class="mr-step-label">Mentor</span></li>
+              <li class="mr-step" data-step="3"><span class="mr-step-num">3</span><span class="mr-step-label">Time slot</span></li>
+              <li class="mr-step" data-step="4"><span class="mr-step-num">4</span><span class="mr-step-label">Confirm</span></li>
+            </ol>
+          </div>
+
+          <!-- Step 1 · Topics -->
+          <div class="mr-pane" data-pane="1">
+            <h3 class="mr-pane-title">What do you want to review?</h3>
+            <p class="sub">Pick one or more subjects. We'll suggest mentors who specialise in them.</p>
+            <div class="mr-chip-grid" id="mrTopicChips" role="group" aria-label="Subjects to review"></div>
+            <label class="adhoc-field mr-note-field">
+              <span>Anything specific? <small class="mr-optional">Optional</small></span>
+              <textarea id="mrNote" rows="2" placeholder="e.g. My answers on federalism feel too descriptive"></textarea>
+            </label>
+          </div>
+
+          <!-- Step 2 · Mentor -->
+          <div class="mr-pane hidden" data-pane="2">
+            <h3 class="mr-pane-title">Choose your mentor</h3>
+            <p class="sub">Mentors matching your topics are shown first.</p>
+            <div class="mr-mentor-grid" id="mrMentorGrid" role="radiogroup" aria-label="Mentors"></div>
+          </div>
+
+          <!-- Step 3 · Time slot -->
+          <div class="mr-pane hidden" data-pane="3">
+            <h3 class="mr-pane-title">Pick a time slot</h3>
+            <p class="sub" id="mrSlotSub">Available slots</p>
+            <div class="mr-filter-row">
+              <div class="mr-filter">
+                <span class="mr-filter-label">Show</span>
+                <div class="seg-control mr-seg" id="mrRangeSeg">
+                  <button class="seg-btn selected" type="button" data-range="week">This week</button>
+                  <button class="seg-btn" type="button" data-range="month">This month</button>
+                </div>
+              </div>
+              <div class="mr-filter">
+                <span class="mr-filter-label">Time of day</span>
+                <div class="seg-control mr-seg" id="mrDaypartSeg">
+                  <button class="seg-btn selected" type="button" data-daypart="any">Any</button>
+                  <button class="seg-btn" type="button" data-daypart="morning">Morning</button>
+                  <button class="seg-btn" type="button" data-daypart="afternoon">Afternoon</button>
+                  <button class="seg-btn" type="button" data-daypart="evening">Evening</button>
+                </div>
+              </div>
+              <div class="mr-filter">
+                <span class="mr-filter-label">Duration</span>
+                <div class="seg-control mr-seg" id="mrDurationSeg">
+                  <button class="seg-btn selected" type="button" data-minutes="30">30m</button>
+                  <button class="seg-btn" type="button" data-minutes="45">45m</button>
+                  <button class="seg-btn" type="button" data-minutes="60">60m</button>
+                </div>
+              </div>
+            </div>
+            <div class="mr-day-strip" id="mrDayStrip" role="tablist" aria-label="Days"></div>
+            <div class="mr-slot-grid" id="mrSlotGrid" role="radiogroup" aria-label="Time slots"></div>
+          </div>
+
+          <!-- Step 4 · Confirm -->
+          <div class="mr-pane hidden" data-pane="4">
+            <h3 class="mr-pane-title">Confirm your review</h3>
+            <p class="sub">Your mentor will confirm, then your Google Meet link appears here.</p>
+            <dl class="mr-summary" id="mrSummary"></dl>
+          </div>
+
+          <div class="mr-booker-foot">
+            <button class="btn btn-ghost btn-sm" id="mrBackBtn" type="button">← Back</button>
+            <span class="mr-foot-hint" id="mrFootHint"></span>
+            <button class="btn btn-primary" id="mrNextBtn" type="button" disabled>Continue →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── ACCOUNT SETTINGS VIEW ─── -->
+      <section id="profile" class="view profile-view hidden" aria-labelledby="settingsPageTitle">
+
+        <!-- Page Header — matches Today h1 mark pattern -->
+        <div class="settings-page-header">
+          <div>
+            <h1 class="settings-page-title" id="settingsPageTitle">Account <mark>settings</mark></h1>
+          </div>
+          <button class="btn btn-ghost btn-sm profile-back-btn" id="profileBackBtn">← Back to Dashboard</button>
+        </div>
+
+        <div class="settings-sections-stack">
+
+          <!-- 1. Aspirant Profile -->
+          <div class="settings-group-card">
+            <div class="settings-group-header">
+              <div class="sticker sticker--sm sticker--green" aria-hidden="true">
+                <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#14130F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+              </div>
+              <div class="settings-group-text">
+                <h2 class="settings-group-title">Aspirant Profile</h2>
+                <p class="settings-group-desc">Your identity and exam target year.</p>
+              </div>
+            </div>
+
+            <div class="settings-profile-row">
+              <div class="settings-avatar-wrap">
+                <svg width="68" height="68" viewBox="0 0 108 108" fill="none">
+                  <circle cx="54" cy="54" r="54" fill="url(#avatarCleanGrad)" />
+                  <path d="M22 108C22 84 36 74 54 74C72 74 86 84 86 108" fill="#1E293B" />
+                  <path d="M42 76L54 90L66 76" stroke="#4426D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="54" cy="46" r="22" fill="#FDE68A" />
+                  <path d="M34 40C34 30 40 23 54 23C68 23 74 30 74 40C74 34 68 28 54 28C40 28 34 34 34 40Z" fill="#0F172A" />
+                  <rect x="38" y="40" width="13" height="11" rx="4" stroke="#0F172A" stroke-width="2.2" fill="rgba(255,255,255,0.4)" />
+                  <rect x="57" y="40" width="13" height="11" rx="4" stroke="#0F172A" stroke-width="2.2" fill="rgba(255,255,255,0.4)" />
+                  <line x1="51" y1="45" x2="57" y2="45" stroke="#0F172A" stroke-width="2.2" />
+                  <circle cx="44.5" cy="45.5" r="1.8" fill="#0F172A" />
+                  <circle cx="63.5" cy="45.5" r="1.8" fill="#0F172A" />
+                  <path d="M48 56C51 59 57 59 60 56" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="avatarCleanGrad" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#EEF2FF" />
+                      <stop offset="1" stop-color="#DDD6FE" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <span class="p-avatar-online-dot"></span>
+              </div>
+
+              <div class="settings-profile-fields">
+                <div class="settings-field-grid">
+                  <div class="settings-field">
+                    <label class="settings-label" for="profileNameInput">Full Name</label>
+                    <input type="text" class="settings-input" id="profileNameInput" value="Rahul Mehta" placeholder="Enter full name">
+                  </div>
+                  <div class="settings-field">
+                    <label class="settings-label" for="profileYearSelect">Target CSE Year</label>
+                    <select class="settings-select" id="profileYearSelect">
+                      <option value="2026">UPSC CSE 2026</option>
+                      <option value="2027" selected>UPSC CSE 2027</option>
+                      <option value="2028">UPSC CSE 2028</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Your Account -->
+          <div class="settings-group-card">
+            <div class="settings-group-header">
+              <div class="sticker sticker--sm sticker--blue" aria-hidden="true">
+                <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#14130F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+              </div>
+              <div class="settings-group-text">
+                <h2 class="settings-group-title">Your account</h2>
+                <p class="settings-group-desc">Credentials, passkeys, and connected sync channels.</p>
+              </div>
+            </div>
+
+            <div class="settings-grid-2col">
+
+              <!-- Aspirant ID -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--blue" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph">✦</span>
+                </div>
+                <div class="p-card-body">
+                  <label class="eyebrow">Aspirant ID</label>
+                  <div class="p-card-row">
+                    <code class="p-code" id="aspirantIdText">PATHU-2027-RM84</code>
+                    <div class="copy-action-wrap">
+                      <span class="copy-feedback-text" id="copyFeedback" aria-live="polite"></span>
+                      <button class="btn-clean-chip" id="copyIdBtn" aria-label="Copy Aspirant ID">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Registered Email -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--green" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph">@</span>
+                </div>
+                <div class="p-card-body">
+                  <label class="eyebrow">Registered Email</label>
+                  <div class="p-card-row">
+                    <span class="p-val-text">rahul.mehta@pathu.app</span>
+                    <span class="p-status-tag green">Verified</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--purple" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#14130F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                </div>
+                <div class="p-card-body">
+                  <label class="eyebrow">Password</label>
+                  <div class="p-card-row">
+                    <span class="p-val-dots">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</span>
+                    <button class="btn-clean-chip" id="changePassBtn" aria-label="Change password">Change</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Telegram Sync -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--blue" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#14130F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2.5L10 14"/><path d="M21.5 2.5L14.5 21.5L10 14L2.5 9.5L21.5 2.5Z"/></svg></span>
+                </div>
+                <div class="p-card-body">
+                  <label class="eyebrow">Telegram Sync</label>
+                  <div class="p-card-row">
+                    <span class="p-val-text" id="teleHandleDisplay">@rahul_upsc_sync</span>
+                    <div class="tele-status-actions">
+                      <span class="p-status-tag blue" id="teleProfileStatusTag">Connected</span>
+                      <button class="btn-clean-text-btn" id="teleDisconnectBtn">Disconnect</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3. How You Study -->
+          <div class="settings-group-card">
+            <div class="settings-group-header">
+              <div class="sticker sticker--sm sticker--yellow" aria-hidden="true">
+                <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                <span class="glyph">&#9719;</span>
+              </div>
+              <div class="settings-group-text">
+                <h2 class="settings-group-title">How you study</h2>
+                <p class="settings-group-desc">Daily time budget and automated schedule behaviour.</p>
+              </div>
+            </div>
+
+            <div class="settings-grid-2col">
+
+              <!-- Daily Study Target -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--yellow" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph">&#9719;</span>
+                </div>
+                <div class="p-card-body">
+                  <div class="p-card-header-row">
+                    <label class="eyebrow">Daily Study Target</label>
+                    <span class="p-status-tag muted">42 hrs / wk</span>
+                  </div>
+                  <div class="p-card-row">
+                    <div class="p-stepper-clean">
+                      <button class="stepper-btn" id="stepperMinus" aria-label="Decrease daily study hours">&#8722;</button>
+                      <strong class="stepper-val-clean" id="profileHoursVal">6.5 hrs</strong>
+                      <button class="stepper-btn" id="stepperPlus" aria-label="Increase daily study hours">+</button>
+                    </div>
+                    <span class="stepper-bounds-meta">Range: 2.0 &#8211; 12.0 hrs/day</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Smart Auto-Reschedule -->
+              <div class="p-card p-card-with-icon">
+                <div class="sticker sticker--sm sticker--purple" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+                  <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#14130F" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
+                </div>
+                <div class="p-card-body" style="flex:1;min-width:0">
+                  <div class="p-card-row">
+                    <div class="switch-info-col">
+                      <label class="eyebrow" id="autoRescheduleLabel">Smart Auto-Reschedule</label>
+                      <p class="switch-consequence-text" id="switchConsequenceText">
+                        We'll quietly slot missed sessions into your next free window.
+                      </p>
+                    </div>
+                    <button type="button" class="settings-switch active" id="profileShiftSwitch" role="switch" aria-checked="true" aria-labelledby="autoRescheduleLabel">
+                      <span class="settings-switch-thumb"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="profile-clean-footer">
+          <span class="p-footer-note">Your login details are kept private and encrypted.</span>
+          <div class="p-footer-buttons">
+            <button class="btn btn-secondary btn-sm" id="profileBackBtn2">Close</button>
+            <button class="btn btn-primary btn-sm" id="profileSaveBtn">Save Changes</button>
+          </div>
+        </div>
+
+      </section>
+
+
+    </div><!-- /workspace -->
+  </div><!-- /app -->
+
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="adhoc-modal-overlay hidden" id="adhocModalOverlay">
+    <section class="adhoc-modal" role="dialog" aria-modal="true" aria-labelledby="adhocModalTitle">
+      <div class="adhoc-modal-head">
+        <div>
+          <span class="eyebrow">TODAY'S PLAN</span>
+          <h2 id="adhocModalTitle">Add a task</h2>
+        </div>
+        <button class="adhoc-modal-close" id="adhocModalClose" type="button" aria-label="Close add task modal">×</button>
+      </div>
+      <form id="adhocTaskForm">
+        <label class="adhoc-field">
+          <span>Subject</span>
+          <select id="adhocSubject" required></select>
+        </label>
+        <label class="adhoc-field">
+          <span>Topic</span>
+          <select id="adhocTopic" required></select>
+        </label>
+        <label class="adhoc-field">
+          <span>Title</span>
+          <input id="adhocTitle" type="text" autocomplete="off" required>
+        </label>
+        <div class="adhoc-field">
+          <span>Duration</span>
+          <div class="seg-control adhoc-duration-control" id="adhocDuration">
+            <button class="seg-btn selected" type="button" data-minutes="30">30m</button>
+            <button class="seg-btn" type="button" data-minutes="45">45m</button>
+            <button class="seg-btn" type="button" data-minutes="60">60m</button>
+            <button class="seg-btn" type="button" data-minutes="90">90m</button>
+          </div>
+        </div>
+        <label class="adhoc-field">
+          <span>Time</span>
+          <input id="adhocTime" type="time" required>
+        </label>
+        <button class="btn btn-primary adhoc-submit" id="adhocSubmit" type="submit" disabled>Add to today →</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- ─── PLAN UPLOAD MODAL (drop → parse → review) ─── -->
+  <div class="adhoc-modal-overlay hidden" id="puOverlay">
+    <section class="adhoc-modal pu-modal" role="dialog" aria-modal="true" aria-labelledby="puTitle">
+      <div class="adhoc-modal-head">
+        <div>
+          <span class="eyebrow">PREPARATION TIMELINE</span>
+          <h2 id="puTitle">Upload your plan</h2>
+          <p class="sub pu-head-sub" id="puHeadSub">Already have a timetable? We'll turn it into timeline sessions you can edit.</p>
+        </div>
+        <button class="adhoc-modal-close" id="puClose" type="button" aria-label="Close upload plan">×</button>
+      </div>
+
+      <!-- State 1 · Choose file -->
+      <div class="pu-state" data-pu-state="drop">
+        <label class="pu-drop" id="puDrop" for="puFile">
+          <input type="file" id="puFile" class="pu-file-input"
+            accept=".csv,.txt,.tsv,.xlsx,.xls,.pdf,.png,.jpg,.jpeg,.heic,.webp">
+          <span class="sticker sticker--blue pu-drop-sticker" aria-hidden="true">
+            <svg viewBox="0 0 100 100"><path d="M50 4 Q55 8 67 11 73 10 76 16 78 22 84 24 90 27 89 33 89 40 92 45 96 50 92 55 89 60 89 67 90 73 84 76 78 78 76 84 73 90 67 89 60 89 55 92 50 96 45 92 40 89 33 89 27 90 24 84 22 78 16 76 10 73 11 67 11 60 8 55 4 50 8 45 11 40 11 33 10 27 16 24 22 22 24 16 27 10 33 11 40 11 45 8 Z"/></svg>
+            <span class="glyph"><svg viewBox="0 0 24 24"><path d="M12 15V4"/><path d="M7.5 8.5L12 4L16.5 8.5"/><path d="M4 15V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15"/></svg></span>
+          </span>
+          <strong class="pu-drop-title">Drop your plan here, or <span class="pu-browse">browse</span></strong>
+          <span class="pu-drop-sub">CSV, Excel, PDF or a photo of your timetable · up to 10 MB</span>
+        </label>
+        <div class="pu-format-row">
+          <span class="p-status-tag muted">.csv</span>
+          <span class="p-status-tag muted">.xlsx</span>
+          <span class="p-status-tag muted">.pdf</span>
+          <span class="p-status-tag muted">.jpg / .png</span>
+        </div>
+        <div class="pu-drop-foot">
+          <button class="btn-link" id="puTemplateBtn" type="button">↓ Download CSV template</button>
+          <button class="btn-link pu-sample-link" id="puSampleBtn" type="button">No file handy? Try a sample plan</button>
+        </div>
+      </div>
+
+      <!-- State 2 · Parsing -->
+      <div class="pu-state hidden" data-pu-state="parse">
+        <div class="pu-file-card">
+          <span class="pu-file-icon" id="puFileIcon" aria-hidden="true">CSV</span>
+          <div class="pu-file-meta">
+            <strong id="puFileName">my-plan.csv</strong>
+            <small id="puFileSize">4 KB</small>
+          </div>
+        </div>
+        <div class="pu-parse-track" role="progressbar" aria-label="Parsing your plan" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="pu-parse-fill" id="puParseFill"></div>
+        </div>
+        <ol class="pu-parse-steps" id="puParseSteps">
+          <li data-pu-step="0">Reading your file</li>
+          <li data-pu-step="1">Detecting subjects &amp; dates</li>
+          <li data-pu-step="2">Mapping sessions to your timeline</li>
+        </ol>
+      </div>
+
+      <!-- State 3 · Review -->
+      <div class="pu-state hidden" data-pu-state="review">
+        <div class="pu-summary" id="puSummary"></div>
+        <div class="pu-table" role="table" aria-label="Detected sessions">
+          <div class="pu-row pu-row--head" role="row">
+            <span role="columnheader"><span class="visually-hidden">Include</span></span>
+            <span role="columnheader">Subject</span>
+            <span role="columnheader">Dates</span>
+            <span role="columnheader">Time slot</span>
+            <span role="columnheader">Hrs/day</span>
+            <span role="columnheader">Status</span>
+          </div>
+          <div id="puRows"></div>
+        </div>
+        <div class="pu-mode">
+          <span class="pu-mode-label">How should we add these?</span>
+          <div class="seg-control pu-mode-seg" id="puModeSeg">
+            <button class="seg-btn selected" type="button" data-pu-mode="add">Add to current plan</button>
+            <button class="seg-btn" type="button" data-pu-mode="replace">Replace current plan</button>
+          </div>
+          <p class="pu-mode-note" id="puModeNote"></p>
+        </div>
+        <div class="pu-foot">
+          <button class="btn btn-ghost btn-sm" id="puRestartBtn" type="button">← Choose another file</button>
+          <button class="btn btn-primary" id="puImportBtn" type="button" disabled>Add sessions →</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="app.js?v=6"></script>
+</body>
+
+</html>
